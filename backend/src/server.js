@@ -3,13 +3,18 @@ import express from 'express' // changed type to module in package.json to allow
 import dotenv from 'dotenv'
 import path from 'path'
 
+import {connectDB} from './lib/db.js'
+
 import authRoutes from './routes/auth.route.js'
 import messagesRoutes from './routes/message.route.js'
+import { connect } from 'http2'
 
 dotenv.config()
 const app = express()
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 3000
+
+app.use(express.json()) // req.body
 
 app.use("/api/auth", authRoutes)
 app.use("/api/messages", messagesRoutes)
@@ -25,4 +30,5 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server running on port http://localhost:${PORT}/`)
+    connectDB()
 })
