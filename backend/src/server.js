@@ -1,5 +1,6 @@
 // const express = require('express') // default is this which is type of commonjs
 import express from 'express' // changed type to module in package.json to allow this to work
+import cookieParser from 'cookie-parser'
 import { ENV } from './lib/env.js'
 import path from 'path'
 
@@ -14,6 +15,7 @@ const __dirname = path.resolve();
 const PORT = ENV.PORT || 3000
 
 app.use(express.json()) // req.body
+app.use(cookieParser())
 
 app.use("/api/auth", authRoutes)
 app.use("/api/messages", messagesRoutes)
