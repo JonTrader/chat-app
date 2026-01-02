@@ -8,7 +8,7 @@ import {connectDB} from './lib/db.js'
 
 import authRoutes from './routes/auth.route.js'
 import messagesRoutes from './routes/message.route.js'
-import { connect } from 'http2'
+// import { connect } from 'http2'
 
 const app = express()
 const __dirname = path.resolve();
