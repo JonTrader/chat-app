@@ -3,6 +3,7 @@ import express from 'express' // changed type to module in package.json to allow
 import cookieParser from 'cookie-parser'
 import { ENV } from './lib/env.js'
 import path from 'path'
+import cors from 'cors'
 
 import {connectDB} from './lib/db.js'
 
@@ -15,6 +16,7 @@ const __dirname = path.resolve();
 const PORT = ENV.PORT || 3000
 
 app.use(express.json()) // req.body
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true}))
 app.use(cookieParser())
 
 app.use("/api/auth", authRoutes)
