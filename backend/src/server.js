@@ -15,7 +15,7 @@ const app = express()
 const __dirname = path.resolve();
 const PORT = ENV.PORT || 3000
 
-app.use(express.json({ limit: '5mb' })) // req.body
+app.use(express.json({ limit: '5mb' })) // req.body - without the limit of 5mb there was a payload to heavy error that for some reason also triggered a cors error
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true}))
 app.use(cookieParser())
 
