@@ -1,8 +1,39 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { useChatStore } from '../store/useChatStore.js'
+import UsersLoadingSkeleton from '../components/UsersLoadingSkeleton.jsx'
+import NoChatsFound from '../components/NoChatsFound.jsx'
+
 
 function ChatsList() {
+  const { getMyChatPartners, chats, isUsersLoading, setSelectedUser, selectedUser } = useChatStore()
+
+  useEffect(() => {
+    getMyChatPartners()
+  }, [getMyChatPartners])
+
+  if (isUsersLoading) return <UsersLoadingSkeleton />
+  if (chats.length === 0) return <NoChatsFound />
+
   return (
-    <div>ChatsList</div>
+    <>
+      {chats.map(chat => (
+        <div
+          key={chat._id}
+          className='bg-cyan-500/10 p-4 rounder-lg cursor-pointer hover:bg-cyan-500/20 transition-colors'
+          onClick={() => selectedUser(chat)}
+        >
+          <div className='flex items-senter gap-3'>
+            {/* TODO: FIX THIS ONLINE STATUS AND MAKE IT WORK WITH SOCKET */}
+            <div className={`avatar-online`}>
+              <div className="size-12 rounded-full">
+                <img src={chat.profilePic  || '/avatar.png'} alt={chat.fullName} />
+              </div>
+            </div>
+            <h4 className='text-slate-200 font-medium truncate'>{chat.fullName}</h4>
+          </div>
+        </div>
+      ))}
+    </>
   )
 }
 
