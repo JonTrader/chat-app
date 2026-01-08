@@ -5,7 +5,7 @@ import NoChatsFound from '../components/NoChatsFound.jsx'
 
 
 function ChatsList() {
-  const { getMyChatPartners, chats, isUsersLoading, setSelectedUser, selectedUser } = useChatStore()
+  const { getMyChatPartners, chats, isUsersLoading, setSelectedUser } = useChatStore()
 
   useEffect(() => {
     getMyChatPartners()
@@ -20,7 +20,7 @@ function ChatsList() {
         <div
           key={chat._id}
           className='bg-cyan-500/10 p-4 rounder-lg cursor-pointer hover:bg-cyan-500/20 transition-colors'
-          onClick={() => selectedUser(chat)}
+          onClick={() => setSelectedUser(chat)}
         >
           <div className='flex items-senter gap-3'>
             {/* TODO: FIX THIS ONLINE STATUS AND MAKE IT WORK WITH SOCKET */}
