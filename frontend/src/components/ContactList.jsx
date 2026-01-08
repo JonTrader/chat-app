@@ -4,7 +4,7 @@ import UsersLoadingSkeleton from '../components/UsersLoadingSkeleton.jsx'
 import NoChatsFound from '../components/NoChatsFound.jsx'
 
 function ContactList() {
-  const { getAllContacts, allContacts, isUsersLoading, setSelectedUser, selectedUser } = useChatStore()
+  const { getAllContacts, allContacts, isUsersLoading, setSelectedUser } = useChatStore()
 
   useEffect(() => {
     getAllContacts()
@@ -19,7 +19,7 @@ function ContactList() {
         <div
           key={contact._id}
           className='bg-cyan-500/10 p-4 rounder-lg cursor-pointer hover:bg-cyan-500/20 transition-colors'
-          onClick={() => selectedUser(contact)}
+          onClick={() => setSelectedUser(contact)}
         >
           <div className='flex items-senter gap-3'>
             {/* TODO: FIX THIS ONLINE STATUS AND MAKE IT WORK WITH SOCKET */}
