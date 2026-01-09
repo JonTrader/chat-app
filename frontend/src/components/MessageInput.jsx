@@ -9,7 +9,7 @@ function MessageInput() {
     const [imagePreview, setImagePreview] = useState(null)
     const fileInputRef = useRef(null) // this is for clicking on a button but behind the scenes sending the click reference to an input
 
-    const { playRandomKeyStrokeSound } = useKeyboardSound
+    const { playRandomKeyStrokeSound } = useKeyboardSound()
     const { sendMessage, isSoundEnabled } = useChatStore()
 
     const handleSendMessage = (e) => {
